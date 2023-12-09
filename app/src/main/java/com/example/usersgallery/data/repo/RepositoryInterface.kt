@@ -8,5 +8,5 @@ import retrofit2.Response
 interface RepositoryInterface {
     suspend fun getUser(userId : Long) : Response<User>
     suspend fun getAlbums(userId : Long) : Response<List<Album>>
-    suspend fun getPhotos(albumId : Long) : Response<List<Photo>>
+    suspend fun getPhotos(albumId : Int) : Response<List<Photo>>
 }

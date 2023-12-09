@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usersgallery.R
+import com.example.usersgallery.data.pojo.Photo
 import com.example.usersgallery.data.pojo.User
 import com.example.usersgallery.data.remote.NetworkResult
 import com.example.usersgallery.databinding.FragmentUserBinding
@@ -26,7 +27,7 @@ class UserFragment : Fragment() {
     private val userId : Long = 4
     private val albumsAdaptor by lazy {
         AlbumsAdaptor(){
-            var action = UserFragmentDirections.actionUserFragmentToPhotosFragment(it.id)
+            var action = UserFragmentDirections.actionUserFragmentToPhotosFragment(it)
             findNavController().navigate(action)
         }
     }
@@ -85,6 +86,7 @@ class UserFragment : Fragment() {
         viewModel.albums.observe(viewLifecycleOwner){result ->
             when(result){
                 is NetworkResult.Loading -> {
+                    //albums loading
                 }
                 is NetworkResult.Success -> {
                     result.data?.let {
@@ -92,6 +94,7 @@ class UserFragment : Fragment() {
                     }
                 }
                 is NetworkResult.Error -> {
+                    //network error
                 }
             }
 

@@ -15,5 +15,5 @@ interface ApiService {
     suspend fun getAlbums(@Path("id") userId: Long) : Response<List<Album>>
 
     @GET("albums/{id}/photos")
-    suspend fun getImages(@Path("id") albumId: Long) : Response<List<Photo>>
+    suspend fun getImages(@Path("id") albumId: Int) : Response<List<Photo>>
 }

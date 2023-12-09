@@ -15,7 +15,7 @@ class Repository(private val apiService: ApiService) : RepositoryInterface {
         return apiService.getAlbums(userId)
     }
 
-    override suspend fun getPhotos(albumId: Long): Response<List<Photo>> {
+    override suspend fun getPhotos(albumId: Int): Response<List<Photo>> {
         return apiService.getImages(albumId)
     }
 }

@@ -20,7 +20,7 @@
         android:label="fragment_photos"
         tools:layout="@layout/fragment_photos" >
         <argument
-            android:name="albumId"
-            app:argType="integer" />
+            android:name="albumData"
+            app:argType="com.example.usersgallery.data.pojo.Album" />
     </fragment>
 </navigation>

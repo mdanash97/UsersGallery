@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.usersgallery.data.pojo.Album
+import com.example.usersgallery.data.pojo.Photo
 import com.example.usersgallery.data.pojo.User
 import com.example.usersgallery.data.remote.NetworkResult
 import com.example.usersgallery.data.repo.RepositoryInterface
@@ -19,6 +20,9 @@ class ViewModel @Inject constructor(private val repository: RepositoryInterface)
 
     private val _albums: MutableLiveData<NetworkResult<List<Album>>> = MutableLiveData()
     val albums : LiveData<NetworkResult<List<Album>>> = _albums
+
+    private val _photos: MutableLiveData<NetworkResult<List<Photo>>> = MutableLiveData()
+    val photos : LiveData<NetworkResult<List<Photo>>> = _photos
 
     fun getUser(userId : Long) {
         _user.value = NetworkResult.Loading()
@@ -44,6 +48,20 @@ class ViewModel @Inject constructor(private val repository: RepositoryInterface)
                 }
             } else {
                 _albums.postValue(NetworkResult.Error("error"))
+            }
+        }
+    }
+
+    fun getPhotos(albumId : Int){
+        _photos.value = NetworkResult.Loading()
+        viewModelScope.launch {
+            val response = repository.getPhotos(albumId)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    _photos.postValue(NetworkResult.Success(it))
+                }
+            } else {
+                _photos.postValue(NetworkResult.Error("error"))
             }
         }
     }
