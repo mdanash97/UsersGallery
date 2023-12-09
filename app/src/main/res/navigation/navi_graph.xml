@@ -22,5 +22,17 @@
         <argument
             android:name="albumData"
             app:argType="com.example.usersgallery.data.pojo.Album" />
+        <action
+            android:id="@+id/action_photosFragment_to_photoView"
+            app:destination="@id/photoView" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoView"
+        android:name="com.example.usersgallery.view.PhotoView"
+        android:label="fragment_photo_view"
+        tools:layout="@layout/fragment_photo_view" >
+        <argument
+            android:name="photoURL"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.usersgallery.R
@@ -25,7 +26,8 @@ class PhotosFragment : Fragment() {
     private val args : PhotosFragmentArgs by navArgs()
     private val photoAdaptor by lazy {
         PhotosAdaptor(){
-            //go to a photo viewer
+            var action = PhotosFragmentDirections.actionPhotosFragmentToPhotoView(it.url)
+            findNavController().navigate(action)
         }
     }
     private lateinit var listToFilter : List<Photo>

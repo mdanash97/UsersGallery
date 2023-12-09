@@ -37,5 +37,8 @@ class PhotosAdaptor(private val onClick : (Photo) -> Unit) : ListAdapter<Photo, 
         Glide.with(holder.itemView.context)
             .load(currentObj.thumbnailUrl)
             .into(holder.holderBinding.photoIV)
+        holder.holderBinding.photoItem.setOnClickListener {
+            onClick(currentObj)
+        }
     }
 }
