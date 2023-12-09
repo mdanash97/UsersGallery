@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navi_graph"
-    app:startDestination="@id/userFragment">
+    app:startDestination="@id/home2">
 
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.usersgallery.view.UserFragment"
+        android:name="com.example.usersgallery.view.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" >
         <action
             android:id="@+id/action_userFragment_to_photosFragment"
             app:destination="@id/photosFragment" />
+        <argument
+            android:name="userData"
+            app:argType="com.example.usersgallery.data.pojo.User" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
-        android:name="com.example.usersgallery.view.PhotosFragment"
+        android:name="com.example.usersgallery.view.photos.PhotosFragment"
         android:label="fragment_photos"
         tools:layout="@layout/fragment_photos" >
         <argument
@@ -28,11 +31,20 @@
     </fragment>
     <fragment
         android:id="@+id/photoView"
-        android:name="com.example.usersgallery.view.PhotoView"
+        android:name="com.example.usersgallery.view.photos.PhotoView"
         android:label="fragment_photo_view"
         tools:layout="@layout/fragment_photo_view" >
         <argument
             android:name="photoURL"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.usersgallery.view.home.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>

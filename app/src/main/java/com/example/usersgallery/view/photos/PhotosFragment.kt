@@ -1,4 +1,4 @@
-package com.example.usersgallery.view
+package com.example.usersgallery.view.photos
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.usersgallery.R
 import com.example.usersgallery.data.pojo.Photo
 import com.example.usersgallery.data.remote.NetworkResult
 import com.example.usersgallery.databinding.FragmentPhotosBinding
@@ -99,7 +98,6 @@ class PhotosFragment : Fragment() {
                     //network error
                 }
             }
-
         }
     }
 

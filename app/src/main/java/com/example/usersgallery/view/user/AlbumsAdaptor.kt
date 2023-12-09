@@ -1,4 +1,4 @@
-package com.example.usersgallery.view
+package com.example.usersgallery.view.user
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,7 +21,9 @@ class AlbumDiffUtil : DiffUtil.ItemCallback<Album>(){
 
 class AlbumViewHolder(var holderBinding : AlbumItemBinding): RecyclerView.ViewHolder(holderBinding.root)
 
-class AlbumsAdaptor(private val onClick : (Album) -> Unit) : ListAdapter<Album,AlbumViewHolder>(AlbumDiffUtil()) {
+class AlbumsAdaptor(private val onClick : (Album) -> Unit) : ListAdapter<Album, AlbumViewHolder>(
+    AlbumDiffUtil()
+) {
 
     lateinit var adaptorBinding: AlbumItemBinding
 

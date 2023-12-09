@@ -15,6 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ViewModel @Inject constructor(private val repository: RepositoryInterface) : ViewModel(){
+    private val _users : MutableLiveData<NetworkResult<List<User>>> = MutableLiveData()
+    val users : LiveData<NetworkResult<List<User>>> = _users
+
     private val _user : MutableLiveData<NetworkResult<User>> = MutableLiveData()
     val user : LiveData<NetworkResult<User>> = _user
 
@@ -62,6 +65,20 @@ class ViewModel @Inject constructor(private val repository: RepositoryInterface)
                 }
             } else {
                 _photos.postValue(NetworkResult.Error("error"))
+            }
+        }
+    }
+
+    fun getUsers(){
+        _users.value = NetworkResult.Loading()
+        viewModelScope.launch {
+            val response = repository.getUsers()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    _users.postValue(NetworkResult.Success(it))
+                }
+            } else {
+                _users.postValue(NetworkResult.Error("error"))
             }
         }
     }

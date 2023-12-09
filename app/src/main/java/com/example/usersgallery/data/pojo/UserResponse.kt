@@ -1,7 +1,8 @@
 package com.example.usersgallery.data.pojo
 
+import java.io.Serializable
 data class User(
-    val id: Int,
+    val id: Long,
     val name: String,
     val username: String,
     val email: String,
@@ -9,7 +10,7 @@ data class User(
     val phone: String,
     val website: String,
     val company: Company
-)
+) : Serializable
 
 data class Address(
     val street: String,
